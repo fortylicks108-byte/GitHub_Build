@@ -1,0 +1,5 @@
+Pillow>=12.3,<13
+pyobjc-core==12.2.1
+pyobjc-framework-Cocoa==12.2.1
+pyobjc-framework-Quartz==12.2.1
+pyobjc-framework-Vision==12.2.1

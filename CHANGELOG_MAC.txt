@@ -1,0 +1,18 @@
+Box Flip Automator v1.9 Mac Port
+
+- Ported Windows-only mouse movement/clicking to native macOS Quartz CGEvent events.
+- Ported wager typing/select-all to native macOS keyboard events (Command+A on Mac).
+- Added macOS global Escape polling and top-left failsafe corner.
+- Added macOS Screen Recording preflight/request support.
+- Added macOS Accessibility permission preflight/request support.
+- Added a visible "Mac permissions" setup control.
+- Added Apple Vision OCR for live odds; no external OCR install required.
+- Updated screen capture to Pillow 12.3+ Retina scale_down mode so capture and click coordinates stay aligned.
+- Preserved Normal, Across the Line, Random Lines, odds weighting, MLB 5yr mode, wager/green/Done workflow, region selection, manual marking, and config persistence.
+- Added Tahoe-native GitHub Actions builds for Apple Silicon and Intel, each packaged as a DMG.
+
+Original v1.9 Mac — Zoom Fix
+- Built from the original working v1.9 Mac source/permission flow.
+- No changes to permission handling, automation, wager flow, odds weighting, MLB mode, Across the Line, or Random Lines.
+- Set-region screenshot now automatically zooms OUT from Retina/raw capture pixels to Quartz logical desktop points.
+- If the Mac returns about 5x too many pixels, the selector automatically displays at about 20% (roughly countering the reported 400%+ zoom) while keeping selection coordinates aligned to mouse coordinates.

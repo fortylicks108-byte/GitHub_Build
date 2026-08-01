@@ -1,0 +1,9 @@
+Box Flip Automator v1.9
+
+- Added MLB 5yr algorithm toggle inside Odds weighting.
+- MLB mode keeps the live market odds as the primary signal, then blends in the 2021-2025 MLB underdog baseline (~42.9%).
+- Historical influence is deliberately stronger in near-even games and fades as the favorite becomes heavier.
+- Existing Max Favorite cap still applies, preserving randomness.
+- MLB mode works with Normal, Across the Line, and Random Lines modes.
+- Read Odds preview now shows the MLB-adjusted top/bottom percentages when MLB 5yr is enabled.
+- Existing v1.8 regions and settings migrate automatically.
