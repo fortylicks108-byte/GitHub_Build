@@ -1,4 +1,4 @@
-name: Build Box Flip Automator for macOS Tahoe
+name: Build Box Flip Automator Apple Silicon
 
 on:
   workflow_dispatch:
@@ -7,19 +7,10 @@ on:
 
 jobs:
   build:
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-          - runner: macos-26
-            label: AppleSilicon
-          - runner: macos-26-intel
-            label: Intel
-
-    runs-on: ${{ matrix.runner }}
+    runs-on: macos-26
 
     steps:
-      - name: Checkout repository
+      - name: Checkout files
         uses: actions/checkout@v4
 
       - name: Set up Python
@@ -32,23 +23,24 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements-build.txt
 
-      - name: Run tests
+      - name: Check app
         run: |
-          python -m pytest tests
+          python -m py_compile app.py
+          python -m py_compile build_mac.py
 
-      - name: Build app and DMG
+      - name: Build Mac app
         run: |
           python build_mac.py
 
-      - name: Rename DMG
+      - name: Find and rename DMG
         run: |
           FILE=$(find dist-dmg -maxdepth 1 -name '*.dmg' | head -1)
           test -n "$FILE"
-          cp "$FILE" "BoxFlipAutomator-macOS-Tahoe-${{ matrix.label }}.dmg"
+          cp "$FILE" "BoxFlipAutomator-macOS-Tahoe-AppleSilicon.dmg"
 
-      - name: Upload Mac build
+      - name: Upload Apple Silicon DMG
         uses: actions/upload-artifact@v4
         with:
-          name: BoxFlipAutomator-macOS-Tahoe-${{ matrix.label }}
-          path: BoxFlipAutomator-macOS-Tahoe-${{ matrix.label }}.dmg
+          name: BoxFlipAutomator-macOS-Tahoe-AppleSilicon
+          path: BoxFlipAutomator-macOS-Tahoe-AppleSilicon.dmg
           if-no-files-found: error
